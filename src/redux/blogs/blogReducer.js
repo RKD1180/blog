@@ -1,5 +1,4 @@
-/* eslint-disable no-self-compare */
-/* eslint-disable no-fallthrough */
+
 import { GETALLBLOG, SEARCHWITHCATEGORY, SEARCTEXT } from "./actionType";
 import initialState from "./initialState";
 import { SEARCHWITHAUTHOR } from "./actionType";
@@ -23,8 +22,8 @@ const blogReducer = (state = initialState, action) => {
       return (state = initialState);
 
     case SEARCTEXT:
-      return state.map((blog) => {
-        return blog.title.includes(action.payload);
+      return state.filter((blog) => {
+        return blog.title.toLocaleLowerCase().includes(action.payload.toLocaleLowerCase());
       });
 
     default:
